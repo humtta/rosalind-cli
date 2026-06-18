@@ -9,3 +9,7 @@ func newRootCmd() *cobra.Command {
 
 	return cmd
 }
+
+func Execute() error {
+	return newRootCmd().Execute()
+}
