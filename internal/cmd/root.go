@@ -8,6 +8,7 @@ func newRootCmd() *cobra.Command {
 	cmd := &cobra.Command{}
 
 	cmd.AddCommand(newListCmd())
+	cmd.AddCommand(newGetCmd())
 
 	return cmd
 }
