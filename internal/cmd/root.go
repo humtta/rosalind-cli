@@ -5,7 +5,10 @@ import (
 )
 
 func newRootCmd() *cobra.Command {
-	cmd := &cobra.Command{}
+	cmd := &cobra.Command{
+		Use:   "rosalind",
+		Short: "Access Rosalind problems from the terminal",
+	}
 
 	cmd.AddCommand(newListCmd())
 	cmd.AddCommand(newGetCmd())
