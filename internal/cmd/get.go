@@ -5,7 +5,10 @@ import (
 )
 
 func newGetCmd() *cobra.Command {
-	cmd := &cobra.Command{}
+	cmd := &cobra.Command{
+		Use:   "get",
+		Short: "Show the statement of a Rosalind problem",
+	}
 
 	return cmd
 }
