@@ -5,7 +5,10 @@ import (
 )
 
 func newListCmd() *cobra.Command {
-	cmd := &cobra.Command{}
+	cmd := &cobra.Command{
+		Use:   "list",
+		Short: "List all Rosalind problems",
+	}
 
 	return cmd
 }
