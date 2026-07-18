@@ -9,5 +9,5 @@ tasks:
   lint: go vet ./...
   check:
     cmds:
-      - task fmt
-      - task vet
+      - task format
+      - task lint
