@@ -4,18 +4,5 @@
   "packages": {
     "go": "1.26.3",
     "go-task": "3.48.0"
-  },
-
-  "shell": {
-    "scripts": {
-      "build": "go build -o ./out/rosalind ./cmd/rosalind/",
-      "run": "go run ./cmd/rosalind/",
-      "fmt": "go fmt ./...",
-      "vet": "go vet ./...",
-      "check": [
-        "devbox run fmt",
-        "devbox run vet"
-      ]
-    }
   }
 }

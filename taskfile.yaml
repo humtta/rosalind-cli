@@ -1,3 +1,13 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 
 version: "3"
+
+tasks:
+  build: go build -o ./out/rosalind ./cmd/rosalind/
+  run: go run ./cmd/rosalind/
+  fmt: go fmt ./...
+  vet: go vet ./...
+  check:
+    cmds:
+      - task fmt
+      - task vet
