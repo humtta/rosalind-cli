@@ -11,3 +11,4 @@ tasks:
     cmds:
       - task format
       - task lint
+    silent: true
