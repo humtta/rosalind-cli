@@ -2,6 +2,8 @@
 
 version: "3"
 
+silent: true
+
 tasks:
   build: go build -o ./out/rosalind ./cmd/rosalind/
   run: go run ./cmd/rosalind/
@@ -11,4 +13,3 @@ tasks:
     cmds:
       - task format
       - task lint
-    silent: true
