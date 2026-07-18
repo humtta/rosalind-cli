@@ -5,11 +5,24 @@ version: "3"
 silent: true
 
 tasks:
-  build: go build -o ./out/rosalind ./cmd/rosalind/
-  run: go run ./cmd/rosalind/
-  format: go fmt ./...
-  lint: go vet ./...
+  build:
+    desc: Builds the CLI
+    cmd: go build -o ./out/rosalind ./cmd/rosalind/
+
+  run:
+    desc: Runs the CLI
+    cmd: go run ./cmd/rosalind/
+
+  format:
+    desc: Formats Go code
+    cmd: go fmt ./...
+
+  lint:
+    desc: Lints Go code
+    cmd: go vet ./...
+
   check:
+    desc: Formats and lints Go code
     cmds:
       - task format
       - task lint
