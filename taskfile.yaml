@@ -9,9 +9,11 @@ tasks:
     desc: Builds the CLI
     cmd: go build -o ./out/rosalind ./cmd/rosalind/
 
+  # Use -- to pass arguments to the CLI
+  # Example: task run -- --help
   run:
     desc: Runs the CLI
-    cmd: go run ./cmd/rosalind/
+    cmd: go run ./cmd/rosalind/ {{.CLI_ARGS}}
 
   format:
     desc: Formats Go code
