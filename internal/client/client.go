@@ -27,8 +27,8 @@ func NewClient() *Client {
 	}
 }
 
-func (c *Client) Get(endpoint string) ([]byte, error) {
-	reqURL, err := url.JoinPath(c.baseURL, endpoint)
+func (c *Client) Get(elem ...string) ([]byte, error) {
+	reqURL, err := url.JoinPath(c.baseURL, elem...)
 	if err != nil {
 		return nil, fmt.Errorf("build request URL: %w", err)
 	}
