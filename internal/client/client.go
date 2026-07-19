@@ -31,17 +31,17 @@ func NewClient() *Client {
 }
 
 func (c *Client) GetProblemListPage() ([]byte, error) {
-	return c.Get(problemListPageEndpoint)
+	return c.get(problemListPageEndpoint)
 }
 
 func (c *Client) GetProblemPage(id string) ([]byte, error) {
 	if id == "" {
 		return nil, fmt.Errorf("problem id is empty")
 	}
-	return c.Get(problemPageEndpoint, id)
+	return c.get(problemPageEndpoint, id)
 }
 
-func (c *Client) Get(elem ...string) ([]byte, error) {
+func (c *Client) get(elem ...string) ([]byte, error) {
 	reqURL, err := url.JoinPath(c.baseURL, elem...)
 	if err != nil {
 		return nil, fmt.Errorf("build request URL: %w", err)
