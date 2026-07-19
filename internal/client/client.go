@@ -11,6 +11,8 @@ import (
 const (
 	baseURL = "https://rosalind.info"
 	timeout = 10 * time.Second
+
+	problemListPageEndpoint = "/problems/list-view"
 )
 
 type Client struct {
@@ -25,6 +27,10 @@ func NewClient() *Client {
 		},
 		baseURL: baseURL,
 	}
+}
+
+func (c *Client) GetProblemListPage() ([]byte, error) {
+	return c.Get(problemListPageEndpoint)
 }
 
 func (c *Client) Get(elem ...string) ([]byte, error) {
