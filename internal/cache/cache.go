@@ -7,11 +7,25 @@ import (
 	"time"
 )
 
-const cacheSubpath = "/rosalind-cli/cache.json"
+const (
+	cacheSubpath = "/rosalind-cli/cache.json"
+	ttl          = 24 * time.Hour
+)
 
 type Cache struct {
 	path string
 	ttl  time.Duration
+}
+
+func NewCache() (*Cache, error) {
+	path, err := cachePath()
+	if err != nil {
+		return nil, fmt.Errorf("get cache path: %w", err)
+	}
+	return &Cache{
+		path: path,
+		ttl:  ttl,
+	}, nil
 }
 
 func cachePath() (string, error) {
