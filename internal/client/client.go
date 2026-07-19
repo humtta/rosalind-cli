@@ -13,6 +13,7 @@ const (
 	timeout = 10 * time.Second
 
 	problemListPageEndpoint = "/problems/list-view"
+	problemPageEndpoint     = "/problems"
 )
 
 type Client struct {
@@ -31,6 +32,10 @@ func NewClient() *Client {
 
 func (c *Client) GetProblemListPage() ([]byte, error) {
 	return c.Get(problemListPageEndpoint)
+}
+
+func (c *Client) GetProblemPage(id string) ([]byte, error) {
+	return c.Get(problemPageEndpoint, id)
 }
 
 func (c *Client) Get(elem ...string) ([]byte, error) {
