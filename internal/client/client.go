@@ -35,6 +35,9 @@ func (c *Client) GetProblemListPage() ([]byte, error) {
 }
 
 func (c *Client) GetProblemPage(id string) ([]byte, error) {
+	if id == "" {
+		return nil, fmt.Errorf("problem id is empty")
+	}
 	return c.Get(problemPageEndpoint, id)
 }
 
