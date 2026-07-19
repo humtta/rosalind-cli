@@ -5,12 +5,19 @@ import (
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/humtta/rosalind-cli/internal/model"
 )
 
 const (
 	cacheSubpath = "/rosalind-cli/cache.json"
 	ttl          = 24 * time.Hour
 )
+
+type cacheData struct {
+	Problems  []model.Problem `json:"problems"`
+	WrittenAt time.Time       `json:"written_at"`
+}
 
 type Cache struct {
 	path string
