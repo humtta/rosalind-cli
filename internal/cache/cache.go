@@ -1,6 +1,8 @@
 package cache
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -41,4 +43,25 @@ func cachePath() (string, error) {
 		return "", fmt.Errorf("locate user cache dir: %w", err)
 	}
 	return filepath.Join(dir, cacheSubpath), nil
+}
+
+func (c *Cache) Get() ([]model.Problem, error) {
+	raw, err := os.ReadFile(c.path)
+	if err != nil {
+		if errors.Is(err, os.ErrNotExist) {
+			return nil, nil
+		}
+		return nil, fmt.Errorf("read cache: %w", err)
+	}
+
+	var data cacheData
+	if err := json.Unmarshal(raw, &data); err != nil {
+		return nil, fmt.Errorf("decode cache: %w", err)
+	}
+
+	if time.Since(data.WrittenAt) > c.ttl {
+		return nil, nil
+	}
+
+	return data.Problems, nil
 }
