@@ -1,6 +1,7 @@
 package model
 
 type Problem struct {
+	Index     int
 	ID        string
 	Title     string
 	URL       string
