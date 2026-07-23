@@ -2,12 +2,33 @@ package parser
 
 import (
 	"fmt"
+	"io"
 	"net/url"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/humtta/rosalind-cli/internal/model"
 )
+
+func ParseProblemListPage(r io.Reader, base string) (*[]model.Problem, error) {
+	doc, err := goquery.NewDocumentFromReader(r)
+	if err != nil {
+		return nil, fmt.Errorf("parse HTML: %w", err)
+	}
+
+	rows := doc.Find("table.problem-list tbody tr")
+	problems := make([]model.Problem, 0, rows.Length())
+
+	for i := range rows.Length() {
+		problem, err := parseProblemListRow(i, rows.Eq(i), base)
+		if err != nil {
+			return nil, fmt.Errorf("parse row %d: %w", i, err)
+		}
+		problems = append(problems, *problem)
+	}
+
+	return &problems, nil
+}
 
 func parseProblemListRow(
 	i int,
