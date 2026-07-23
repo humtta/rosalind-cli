@@ -1,10 +1,53 @@
 package parser
 
 import (
+	"fmt"
 	"net/url"
+	"strings"
 
-	_ "github.com/PuerkitoBio/goquery"
+	"github.com/PuerkitoBio/goquery"
+	"github.com/humtta/rosalind-cli/internal/model"
 )
+
+func parseProblemListRow(
+	i int,
+	row *goquery.Selection,
+	base string,
+) (*model.Problem, error) {
+	cells := row.Find("td")
+	if cells.Length() < 2 {
+		return nil, fmt.Errorf("unexpected layout")
+	}
+
+	link := cells.Eq(1).Find("a[href]").First()
+
+	href, ok := link.Attr("href")
+	if !ok || href == "" {
+		return nil, fmt.Errorf("missing link")
+	}
+
+	url, err := resolveURL(base, href)
+	if err != nil {
+		return nil, fmt.Errorf("resolve URL: %w", err)
+	}
+
+	id := strings.TrimSpace(cells.Eq(0).Text())
+	if id == "" {
+		return nil, fmt.Errorf("missing id")
+	}
+
+	title := strings.TrimSpace(link.Text())
+	if title == "" {
+		return nil, fmt.Errorf("missing title")
+	}
+
+	return &model.Problem{
+		Index: i,
+		ID:    id,
+		Title: title,
+		URL:   url,
+	}, nil
+}
 
 func resolveURL(base, path string) (string, error) {
 	b, err := url.Parse(base)
