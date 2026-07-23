@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"strings"
 
+	_ "github.com/JohannesKaufmann/html-to-markdown/v2"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/humtta/rosalind-cli/internal/model"
 )
