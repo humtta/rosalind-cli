@@ -88,3 +88,14 @@ func resolveURL(base, path string) (string, error) {
 
 	return b.ResolveReference(p).String(), nil
 }
+
+func ParseProblemPage(
+	r io.Reader,
+	base string,
+) (*model.ProblemStatement, error) {
+	return &model.ProblemStatement{
+		Description:   "",
+		SampleDataset: "",
+		SampleOutput:  "",
+	}, nil
+}
