@@ -17,6 +17,10 @@ func ParseProblemListPage(r io.Reader, base string) (*[]model.Problem, error) {
 	}
 
 	rows := doc.Find("table.problem-list tbody tr")
+	if rows.Length() == 0 {
+		return nil, fmt.Errorf("problem list is empty")
+	}
+
 	problems := make([]model.Problem, 0, rows.Length())
 
 	for i := range rows.Length() {
