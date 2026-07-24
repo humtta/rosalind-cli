@@ -20,6 +20,7 @@ const (
 	userAgent = "rosalind-cli"
 )
 
+// Client is an HTTP client for fetching Rosalind pages.
 type Client struct {
 	httpClient *http.Client
 	baseURL    string
