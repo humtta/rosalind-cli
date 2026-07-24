@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	baseURL = "https://rosalind.info"
-	timeout = 10 * time.Second
+	defaultBaseURL = "https://rosalind.info"
+	timeout        = 10 * time.Second
 
 	problemListPageEndpoint = "/problems/list-view"
 	problemPageEndpoint     = "/problems"
@@ -26,7 +26,7 @@ func NewClient() *Client {
 		httpClient: &http.Client{
 			Timeout: timeout,
 		},
-		baseURL: baseURL,
+		baseURL: defaultBaseURL,
 	}
 }
 
