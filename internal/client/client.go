@@ -44,6 +44,7 @@ func (c *Client) GetList(ctx context.Context) ([]byte, error) {
 	return c.get(ctx, listEndpoint)
 }
 
+// GetProblem fetches the Rosalind problem page for the given problem ID.
 func (c *Client) GetProblem(ctx context.Context, id string) ([]byte, error) {
 	if id == "" {
 		return nil, fmt.Errorf("problem id is empty")
