@@ -15,6 +15,8 @@ const (
 
 	listEndpoint    = "/problems/list-view"
 	problemEndpoint = "/problems"
+
+	userAgent = "rosalind-cli"
 )
 
 type Client struct {
@@ -54,6 +56,8 @@ func (c *Client) get(ctx context.Context, segments ...string) ([]byte, error) {
 	if err != nil {
 		return nil, fmt.Errorf("create GET request: %w", err)
 	}
+
+	req.Header.Set("User-Agent", userAgent)
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
