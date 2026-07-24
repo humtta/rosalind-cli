@@ -52,6 +52,8 @@ func (c *Client) GetProblem(ctx context.Context, id string) ([]byte, error) {
 	return c.get(ctx, problemEndpoint, id)
 }
 
+// get performs a GET request to the base URL joined with the given path
+// segments.
 func (c *Client) get(ctx context.Context, segments ...string) ([]byte, error) {
 	reqURL, err := url.JoinPath(c.baseURL, segments...)
 	if err != nil {
