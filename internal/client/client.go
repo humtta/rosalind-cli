@@ -34,6 +34,7 @@ func NewClient() *Client {
 	}
 }
 
+// BaseURL returns the [Client]'s base URL.
 func (c *Client) BaseURL() string {
 	return c.baseURL
 }
