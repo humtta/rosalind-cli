@@ -32,11 +32,11 @@ func (c *Client) BaseURL() string {
 	return c.baseURL
 }
 
-func (c *Client) GetProblemListPage() ([]byte, error) {
+func (c *Client) GetList() ([]byte, error) {
 	return c.get(listEndpoint)
 }
 
-func (c *Client) GetProblemPage(id string) ([]byte, error) {
+func (c *Client) GetProblem(id string) ([]byte, error) {
 	if id == "" {
 		return nil, fmt.Errorf("problem id is empty")
 	}
