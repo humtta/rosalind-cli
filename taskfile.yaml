@@ -25,6 +25,4 @@ tasks:
 
   check:
     desc: Formats and lints Go code
-    cmds:
-      - task format
-      - task lint
+    cmd: task format lint
