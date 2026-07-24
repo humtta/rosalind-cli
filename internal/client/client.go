@@ -1,3 +1,4 @@
+// Package client provides an HTTP client for fetching Rosalind pages.
 package client
 
 import (
