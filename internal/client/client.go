@@ -1,6 +1,7 @@
 package client
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"net/http"
@@ -32,24 +33,24 @@ func (c *Client) BaseURL() string {
 	return c.baseURL
 }
 
-func (c *Client) GetList() ([]byte, error) {
-	return c.get(listEndpoint)
+func (c *Client) GetList(ctx context.Context) ([]byte, error) {
+	return c.get(ctx, listEndpoint)
 }
 
-func (c *Client) GetProblem(id string) ([]byte, error) {
+func (c *Client) GetProblem(ctx context.Context, id string) ([]byte, error) {
 	if id == "" {
 		return nil, fmt.Errorf("problem id is empty")
 	}
-	return c.get(problemEndpoint, id)
+	return c.get(ctx, problemEndpoint, id)
 }
 
-func (c *Client) get(segments ...string) ([]byte, error) {
+func (c *Client) get(ctx context.Context, segments ...string) ([]byte, error) {
 	reqURL, err := url.JoinPath(c.baseURL, segments...)
 	if err != nil {
 		return nil, fmt.Errorf("build request URL: %w", err)
 	}
 
-	req, err := http.NewRequest(http.MethodGet, reqURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, reqURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("create GET request: %w", err)
 	}
