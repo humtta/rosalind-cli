@@ -26,6 +26,7 @@ type Client struct {
 	baseURL    string
 }
 
+// NewClient returns a new [Client] with the default base URL and timeout.
 func NewClient() *Client {
 	return &Client{
 		httpClient: &http.Client{Timeout: defaultTimeout},
