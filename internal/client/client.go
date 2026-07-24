@@ -43,8 +43,8 @@ func (c *Client) GetProblemPage(id string) ([]byte, error) {
 	return c.get(problemPageEndpoint, id)
 }
 
-func (c *Client) get(elem ...string) ([]byte, error) {
-	reqURL, err := url.JoinPath(c.baseURL, elem...)
+func (c *Client) get(segments ...string) ([]byte, error) {
+	reqURL, err := url.JoinPath(c.baseURL, segments...)
 	if err != nil {
 		return nil, fmt.Errorf("build request URL: %w", err)
 	}
