@@ -30,6 +30,10 @@ func NewClient() *Client {
 	}
 }
 
+func (c *Client) BaseURL() string {
+	return c.baseURL
+}
+
 func (c *Client) GetProblemListPage() ([]byte, error) {
 	return c.get(problemListPageEndpoint)
 }
