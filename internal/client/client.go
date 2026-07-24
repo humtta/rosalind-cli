@@ -12,8 +12,8 @@ const (
 	defaultBaseURL = "https://rosalind.info"
 	defaultTimeout = 10 * time.Second
 
-	problemListPageEndpoint = "/problems/list-view"
-	problemPageEndpoint     = "/problems"
+	listEndpoint    = "/problems/list-view"
+	problemEndpoint = "/problems"
 )
 
 type Client struct {
@@ -33,14 +33,14 @@ func (c *Client) BaseURL() string {
 }
 
 func (c *Client) GetProblemListPage() ([]byte, error) {
-	return c.get(problemListPageEndpoint)
+	return c.get(listEndpoint)
 }
 
 func (c *Client) GetProblemPage(id string) ([]byte, error) {
 	if id == "" {
 		return nil, fmt.Errorf("problem id is empty")
 	}
-	return c.get(problemPageEndpoint, id)
+	return c.get(problemEndpoint, id)
 }
 
 func (c *Client) get(segments ...string) ([]byte, error) {
