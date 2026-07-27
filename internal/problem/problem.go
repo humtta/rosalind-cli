@@ -6,6 +6,7 @@ import (
 	"github.com/humtta/rosalind-cli/internal/utils"
 )
 
+// Problem represents a Rosalind problem.
 type Problem struct {
 	Index     int
 	ID        string
