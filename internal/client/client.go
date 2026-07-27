@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"net/url"
 	"time"
+
+	"github.com/humtta/rosalind-cli/internal/problem"
 )
 
 const (
@@ -46,8 +48,8 @@ func (c *Client) GetList(ctx context.Context) ([]byte, error) {
 
 // GetProblem fetches the Rosalind problem page for the given problem ID.
 func (c *Client) GetProblem(ctx context.Context, id string) ([]byte, error) {
-	if id == "" {
-		return nil, fmt.Errorf("problem id is empty")
+	if err := problem.ValidateID(id); err != nil {
+		return nil, fmt.Errorf("invalid id '%s': %w", id, err)
 	}
 	return c.get(ctx, problemEndpoint, id)
 }
