@@ -4,5 +4,11 @@
   "packages": {
     "go": "1.26.3",
     "go-task": "3.48.0"
+  },
+
+  "shell": {
+    "init_hook": [
+      "go mod tidy"
+    ]
   }
 }
