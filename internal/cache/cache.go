@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/humtta/rosalind-cli/internal/model"
+	"github.com/humtta/rosalind-cli/internal/problem"
 )
 
 const (
@@ -17,8 +17,8 @@ const (
 )
 
 type cacheData struct {
-	Problems  []model.Problem `json:"problems"`
-	WrittenAt time.Time       `json:"written_at"`
+	Problems  []problem.Problem `json:"problems"`
+	WrittenAt time.Time         `json:"written_at"`
 }
 
 type Cache struct {
@@ -45,7 +45,7 @@ func cachePath() (string, error) {
 	return filepath.Join(dir, cacheSubpath), nil
 }
 
-func (c *Cache) Get() ([]model.Problem, error) {
+func (c *Cache) Get() ([]problem.Problem, error) {
 	raw, err := os.ReadFile(c.path)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
@@ -66,7 +66,7 @@ func (c *Cache) Get() ([]model.Problem, error) {
 	return data.Problems, nil
 }
 
-func (c *Cache) Set(problems []model.Problem) error {
+func (c *Cache) Set(problems []problem.Problem) error {
 	data := cacheData{
 		Problems:  problems,
 		WrittenAt: time.Now(),

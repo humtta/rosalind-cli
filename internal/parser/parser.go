@@ -8,10 +8,13 @@ import (
 
 	_ "github.com/JohannesKaufmann/html-to-markdown/v2"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/humtta/rosalind-cli/internal/model"
+	"github.com/humtta/rosalind-cli/internal/problem"
 )
 
-func ParseProblemListPage(r io.Reader, base string) (*[]model.Problem, error) {
+func ParseProblemListPage(
+	r io.Reader,
+	base string,
+) (*[]problem.Problem, error) {
 	doc, err := goquery.NewDocumentFromReader(r)
 	if err != nil {
 		return nil, fmt.Errorf("parse HTML: %w", err)
@@ -22,7 +25,7 @@ func ParseProblemListPage(r io.Reader, base string) (*[]model.Problem, error) {
 		return nil, fmt.Errorf("problem list is empty")
 	}
 
-	problems := make([]model.Problem, 0, rows.Length())
+	problems := make([]problem.Problem, 0, rows.Length())
 
 	for i := range rows.Length() {
 		problem, err := parseProblemListRow(i, rows.Eq(i), base)
@@ -39,7 +42,7 @@ func parseProblemListRow(
 	i int,
 	row *goquery.Selection,
 	base string,
-) (*model.Problem, error) {
+) (*problem.Problem, error) {
 	cells := row.Find("td")
 	if cells.Length() < 2 {
 		return nil, fmt.Errorf("unexpected layout")
@@ -67,7 +70,7 @@ func parseProblemListRow(
 		return nil, fmt.Errorf("missing title")
 	}
 
-	return &model.Problem{
+	return &problem.Problem{
 		Index: i,
 		ID:    id,
 		Title: title,
@@ -92,8 +95,8 @@ func resolveURL(base, path string) (string, error) {
 func ParseProblemPage(
 	r io.Reader,
 	base string,
-) (*model.ProblemStatement, error) {
-	return &model.ProblemStatement{
+) (*problem.ProblemStatement, error) {
+	return &problem.ProblemStatement{
 		Description:   "",
 		SampleDataset: "",
 		SampleOutput:  "",

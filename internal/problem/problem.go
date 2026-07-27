@@ -1,4 +1,4 @@
-package model
+package problem
 
 type Problem struct {
 	Index     int
