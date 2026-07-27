@@ -15,6 +15,7 @@ type Problem struct {
 	Statement ProblemStatement
 }
 
+// ProblemStatement represents the statement of a Rosalind problem.
 type ProblemStatement struct {
 	Description   string
 	SampleDataset string
