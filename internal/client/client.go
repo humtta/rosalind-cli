@@ -59,30 +59,30 @@ func (c *Client) GetProblem(ctx context.Context, id string) ([]byte, error) {
 func (c *Client) get(ctx context.Context, segments ...string) ([]byte, error) {
 	url, err := url.JoinPath(c.baseURL, segments...)
 	if err != nil {
-		return nil, fmt.Errorf("build request URL: %w", err)
+		return nil, fmt.Errorf("build URL: %w", err)
 	}
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
-		return nil, fmt.Errorf("create GET request: %w", err)
+		return nil, fmt.Errorf("build request: %w", err)
 	}
 
 	req.Header.Set("User-Agent", userAgent)
 
 	res, err := c.httpClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("GET %s: %w", url, err)
+		return nil, fmt.Errorf("get '%s': %w", url, err)
 	}
 
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("GET %s: %s", url, res.Status)
+		return nil, fmt.Errorf("get '%s': unexpected status '%s'", url, res.Status)
 	}
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return nil, fmt.Errorf("read response body from %s: %w", url, err)
+		return nil, fmt.Errorf("get '%s': read body: %w", url, err)
 	}
 
 	return body, nil
