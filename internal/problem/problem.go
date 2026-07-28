@@ -1,3 +1,4 @@
+// Package problem defines types and helpers for Rosalind problems.
 package problem
 
 import (
