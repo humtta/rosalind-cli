@@ -28,7 +28,7 @@ func ParseProblemListPage(
 	problems := make([]problem.Problem, 0, rows.Length())
 
 	for i := range rows.Length() {
-		problem, err := parseProblemListRow(i, rows.Eq(i), base)
+		problem, err := parseProblemListRow(rows.Eq(i), base)
 		if err != nil {
 			return nil, fmt.Errorf("parse row %d: %w", i, err)
 		}
@@ -39,7 +39,6 @@ func ParseProblemListPage(
 }
 
 func parseProblemListRow(
-	i int,
 	row *goquery.Selection,
 	base string,
 ) (*problem.Problem, error) {
@@ -71,7 +70,6 @@ func parseProblemListRow(
 	}
 
 	return &problem.Problem{
-		Index: i,
 		ID:    id,
 		Title: title,
 		URL:   url,

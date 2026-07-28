@@ -9,7 +9,6 @@ import (
 
 // Problem represents a Rosalind problem.
 type Problem struct {
-	Index     int
 	ID        string
 	Title     string
 	URL       string
