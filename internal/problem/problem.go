@@ -9,10 +9,10 @@ import (
 
 // Problem represents a Rosalind problem.
 type Problem struct {
-	ID        string
-	Title     string
-	URL       string
-	Statement ProblemStatement
+	ID        string           `json:"id"`
+	Title     string           `json:"title"`
+	URL       string           `json:"url"`
+	Statement ProblemStatement `json:"-"`
 }
 
 // ProblemStatement represents the statement of a Rosalind problem.
