@@ -27,12 +27,12 @@ type Cache struct {
 }
 
 func NewCache() (*Cache, error) {
-	path, err := cachePath()
+	dir, err := os.UserCacheDir()
 	if err != nil {
-		return nil, fmt.Errorf("get cache path: %w", err)
+		return nil, fmt.Errorf("find cache directory: %w", err)
 	}
 	return &Cache{
-		path: path,
+		path: filepath.Join(dir, cacheSubpath),
 		ttl:  ttl,
 	}, nil
 }
