@@ -37,14 +37,6 @@ func NewCache() (*Cache, error) {
 	}, nil
 }
 
-func cachePath() (string, error) {
-	dir, err := os.UserCacheDir()
-	if err != nil {
-		return "", fmt.Errorf("locate user cache dir: %w", err)
-	}
-	return filepath.Join(dir, cacheSubpath), nil
-}
-
 func (c *Cache) Get() ([]problem.Problem, error) {
 	raw, err := os.ReadFile(c.path)
 	if err != nil {
