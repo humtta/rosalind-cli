@@ -17,9 +17,9 @@ type Problem struct {
 
 // ProblemStatement represents the statement of a Rosalind problem.
 type ProblemStatement struct {
-	Description   string
-	SampleDataset string
-	SampleOutput  string
+	Description   string `json:"description"`
+	SampleDataset string `json:"sample_dataset"`
+	SampleOutput  string `json:"sample_output"`
 }
 
 // ValidateID validates the given problem ID.
