@@ -15,7 +15,7 @@ const (
 	cacheDir  = "rosalind-cli"
 	cacheFile = "cache.json"
 
-	ttl = 24 * time.Hour
+	defaultTTL = 24 * time.Hour
 )
 
 type cacheData struct {
@@ -35,7 +35,7 @@ func NewCache() (*Cache, error) {
 	}
 	return &Cache{
 		path: filepath.Join(dir, cacheDir, cacheFile),
-		ttl:  ttl,
+		ttl:  defaultTTL,
 	}, nil
 }
 
