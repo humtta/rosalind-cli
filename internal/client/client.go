@@ -57,12 +57,12 @@ func (c *Client) GetProblem(ctx context.Context, id string) ([]byte, error) {
 // get performs a GET request to the base URL joined with the given path
 // segments.
 func (c *Client) get(ctx context.Context, segments ...string) ([]byte, error) {
-	reqURL, err := url.JoinPath(c.baseURL, segments...)
+	url, err := url.JoinPath(c.baseURL, segments...)
 	if err != nil {
 		return nil, fmt.Errorf("build request URL: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, reqURL, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("create GET request: %w", err)
 	}
@@ -71,18 +71,18 @@ func (c *Client) get(ctx context.Context, segments ...string) ([]byte, error) {
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("GET %s: %w", reqURL, err)
+		return nil, fmt.Errorf("GET %s: %w", url, err)
 	}
 
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("GET %s: %s", reqURL, resp.Status)
+		return nil, fmt.Errorf("GET %s: %s", url, resp.Status)
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, fmt.Errorf("read response body from %s: %w", reqURL, err)
+		return nil, fmt.Errorf("read response body from %s: %w", url, err)
 	}
 
 	return body, nil
