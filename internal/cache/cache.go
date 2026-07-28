@@ -12,8 +12,10 @@ import (
 )
 
 const (
-	cacheSubpath = "/rosalind-cli/cache.json"
-	ttl          = 24 * time.Hour
+	cacheDir  = "rosalind-cli"
+	cacheFile = "cache.json"
+
+	ttl = 24 * time.Hour
 )
 
 type cacheData struct {
@@ -32,7 +34,7 @@ func NewCache() (*Cache, error) {
 		return nil, fmt.Errorf("find cache directory: %w", err)
 	}
 	return &Cache{
-		path: filepath.Join(dir, cacheSubpath),
+		path: filepath.Join(dir, cacheDir, cacheFile),
 		ttl:  ttl,
 	}, nil
 }
