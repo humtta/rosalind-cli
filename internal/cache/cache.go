@@ -59,25 +59,3 @@ func (c *Cache) Get() ([]problem.Problem, error) {
 
 	return data.Problems, nil
 }
-
-func (c *Cache) Set(problems []problem.Problem) error {
-	data := cacheData{
-		Problems:  problems,
-		WrittenAt: time.Now(),
-	}
-
-	raw, err := json.Marshal(data)
-	if err != nil {
-		return fmt.Errorf("encode cache: %w", err)
-	}
-
-	if err := os.MkdirAll(filepath.Dir(c.path), 0o755); err != nil {
-		return fmt.Errorf("create cache dir: %w", err)
-	}
-
-	if err := os.WriteFile(c.path, raw, 0o644); err != nil {
-		return fmt.Errorf("write cache: %w", err)
-	}
-
-	return nil
-}
