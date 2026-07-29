@@ -21,8 +21,8 @@ type cacheData struct {
 }
 
 type Cache struct {
-	path string
-	ttl  time.Duration
+	dir string
+	ttl time.Duration
 }
 
 func NewCache() (*Cache, error) {
@@ -31,7 +31,7 @@ func NewCache() (*Cache, error) {
 		return nil, fmt.Errorf("find cache directory: %w", err)
 	}
 	return &Cache{
-		path: filepath.Join(dir, cacheDir),
-		ttl:  defaultTTL,
+		dir: filepath.Join(dir, cacheDir),
+		ttl: defaultTTL,
 	}, nil
 }
