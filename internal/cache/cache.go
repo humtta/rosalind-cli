@@ -42,3 +42,8 @@ func NewCache() (*Cache, error) {
 		ttl: defaultTTL,
 	}, nil
 }
+
+// listCachePath returns the path to the list cache file.
+func (c *Cache) listCachePath() string {
+	return filepath.Join(c.dir, listCacheFile)
+}
