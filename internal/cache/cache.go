@@ -10,8 +10,9 @@ import (
 )
 
 const (
-	cacheDir      = "rosalind-cli"
-	listCacheFile = "problems.json"
+	cacheDir          = "rosalind-cli"
+	listCacheFile     = "problems.json"
+	statementCacheDir = "statements"
 
 	defaultTTL = 24 * time.Hour
 )
