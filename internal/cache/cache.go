@@ -20,6 +20,11 @@ type listCacheData struct {
 	WrittenAt time.Time         `json:"written_at"`
 }
 
+type statementCacheData struct {
+	Statement problem.ProblemStatement `json:"statement"`
+	WrittenAt time.Time                `json:"written_at"`
+}
+
 type Cache struct {
 	dir string
 	ttl time.Duration
