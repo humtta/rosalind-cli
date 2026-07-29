@@ -10,8 +10,7 @@ import (
 )
 
 const (
-	cacheDir  = "rosalind-cli"
-	cacheFile = "cache.json"
+	cacheDir = "rosalind-cli"
 
 	defaultTTL = 24 * time.Hour
 )
@@ -32,7 +31,7 @@ func NewCache() (*Cache, error) {
 		return nil, fmt.Errorf("find cache directory: %w", err)
 	}
 	return &Cache{
-		path: filepath.Join(dir, cacheDir, cacheFile),
+		path: filepath.Join(dir, cacheDir),
 		ttl:  defaultTTL,
 	}, nil
 }
