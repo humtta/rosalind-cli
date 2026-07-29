@@ -15,7 +15,7 @@ const (
 	defaultTTL = 24 * time.Hour
 )
 
-type cacheData struct {
+type listCacheData struct {
 	Problems  []problem.Problem `json:"problems"`
 	WrittenAt time.Time         `json:"written_at"`
 }
