@@ -1,6 +1,8 @@
 package cache
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -68,4 +70,24 @@ func (c *Cache) statementCachePath(id string) (string, error) {
 		return "", fmt.Errorf("invalid id '%s': %w", id, err)
 	}
 	return filepath.Join(c.dir, statementCacheDir, id+".json"), nil
+}
+
+func (c *Cache) read(path string, entry cacheEntry) (bool, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		if errors.Is(err, os.ErrNotExist) {
+			return false, nil // Cache missing
+		}
+		return false, fmt.Errorf("read '%s': %w", path, err)
+	}
+
+	if err := json.Unmarshal(data, entry); err != nil {
+		return false, fmt.Errorf("unmarshal '%s': %w", path, err)
+	}
+
+	if time.Since(entry.getWrittenAt()) > c.ttl {
+		return false, nil // Cache expired
+	}
+
+	return true, nil
 }
