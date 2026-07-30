@@ -37,9 +37,7 @@ func NewClient() *Client {
 }
 
 // BaseURL returns the [Client]'s base URL.
-func (c *Client) BaseURL() string {
-	return c.baseURL
-}
+func (c *Client) BaseURL() string { return c.baseURL }
 
 // GetList fetches the Rosalind problem list page.
 func (c *Client) GetList(ctx context.Context) ([]byte, error) {
