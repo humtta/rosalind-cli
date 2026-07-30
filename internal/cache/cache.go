@@ -28,6 +28,8 @@ type cacheMetadata struct {
 
 func (c *cacheMetadata) getWrittenAt() time.Time { return c.WrittenAt }
 
+func (c *cacheMetadata) setWrittenAt(t time.Time) { c.WrittenAt = t }
+
 type listCacheEntry struct {
 	Problems []problem.Problem `json:"problems"`
 	cacheMetadata
