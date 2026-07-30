@@ -91,3 +91,40 @@ func (c *Cache) read(path string, entry cacheEntry) (bool, error) {
 
 	return true, nil
 }
+
+func (c *Cache) write(path string, entry cacheEntry) error {
+	entry.setWrittenAt(time.Now())
+
+	data, err := json.Marshal(entry)
+	if err != nil {
+		return fmt.Errorf("marshal entry: %w", err)
+	}
+
+	dir := filepath.Dir(path)
+
+	if err := os.MkdirAll(dir, 0o700); err != nil {
+		return fmt.Errorf("create directory '%s': %w", dir, err)
+	}
+
+	tmp, err := os.CreateTemp(dir, ".tmp-*")
+	if err != nil {
+		return fmt.Errorf("create temporary file: %w", err)
+	}
+
+	defer tmp.Close()
+	defer os.Remove(tmp.Name())
+
+	if _, err := tmp.Write(data); err != nil {
+		return fmt.Errorf("write '%s': %w", tmp.Name(), err)
+	}
+
+	if err := tmp.Close(); err != nil {
+		return fmt.Errorf("close '%s': %w", tmp.Name(), err)
+	}
+
+	if err := os.Rename(tmp.Name(), path); err != nil {
+		return fmt.Errorf("rename '%s' to '%s': %w", tmp.Name(), path, err)
+	}
+
+	return nil
+}
