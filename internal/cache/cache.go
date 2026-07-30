@@ -22,14 +22,18 @@ type cacheEntry interface {
 	setWrittenAt(time.Time)
 }
 
+type cacheMetadata struct {
+	WrittenAt time.Time `json:"written_at"`
+}
+
 type listCacheEntry struct {
-	Problems  []problem.Problem `json:"problems"`
-	WrittenAt time.Time         `json:"written_at"`
+	Problems []problem.Problem `json:"problems"`
+	cacheMetadata
 }
 
 type statementCacheEntry struct {
 	Statement problem.ProblemStatement `json:"statement"`
-	WrittenAt time.Time                `json:"written_at"`
+	cacheMetadata
 }
 
 type Cache struct {
