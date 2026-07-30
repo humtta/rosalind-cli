@@ -26,6 +26,8 @@ type cacheMetadata struct {
 	WrittenAt time.Time `json:"written_at"`
 }
 
+func (c *cacheMetadata) getWrittenAt() time.Time { return c.WrittenAt }
+
 type listCacheEntry struct {
 	Problems []problem.Problem `json:"problems"`
 	cacheMetadata
