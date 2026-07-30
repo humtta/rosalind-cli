@@ -17,6 +17,11 @@ const (
 	defaultTTL = 24 * time.Hour
 )
 
+type cacheEntry interface {
+	getWrittenAt() time.Time
+	setWrittenAt(time.Time)
+}
+
 type listCacheEntry struct {
 	Problems  []problem.Problem `json:"problems"`
 	WrittenAt time.Time         `json:"written_at"`
