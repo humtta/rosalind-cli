@@ -82,6 +82,8 @@ func (c *Cache) statementCachePath(id string) (string, error) {
 	return filepath.Join(c.dir, statementCacheDir, id+".json"), nil
 }
 
+// read reads the cache file at the given path into the given cache entry. The
+// boolean reports whether a valid entry was found.
 func (c *Cache) read(path string, entry cacheEntry) (bool, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
