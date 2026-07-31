@@ -34,6 +34,7 @@ type cacheMetadata struct {
 // getWrittenAt returns the time the cache entry was written.
 func (c *cacheMetadata) getWrittenAt() time.Time { return c.WrittenAt }
 
+// setWrittenAt sets the time the cache entry was written.
 func (c *cacheMetadata) setWrittenAt(t time.Time) { c.WrittenAt = t }
 
 type listCacheEntry struct {
