@@ -43,6 +43,8 @@ type listCacheEntry struct {
 	cacheMetadata
 }
 
+// statementCacheEntry represents the cache entry for a Rosalind problem
+// statement.
 type statementCacheEntry struct {
 	Statement problem.ProblemStatement `json:"statement"`
 	cacheMetadata
