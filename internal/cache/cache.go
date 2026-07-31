@@ -26,6 +26,7 @@ type cacheEntry interface {
 	setWrittenAt(time.Time)
 }
 
+// cacheMetadata provides the written time metadata for cache entries.
 type cacheMetadata struct {
 	WrittenAt time.Time `json:"written_at"`
 }
