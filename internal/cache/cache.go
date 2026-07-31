@@ -31,6 +31,7 @@ type cacheMetadata struct {
 	WrittenAt time.Time `json:"written_at"`
 }
 
+// getWrittenAt returns the time the cache entry was written.
 func (c *cacheMetadata) getWrittenAt() time.Time { return c.WrittenAt }
 
 func (c *cacheMetadata) setWrittenAt(t time.Time) { c.WrittenAt = t }
