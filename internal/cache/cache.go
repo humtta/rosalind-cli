@@ -1,3 +1,4 @@
+// Package cache provides a local file-based cache for Rosalind data.
 package cache
 
 import (
