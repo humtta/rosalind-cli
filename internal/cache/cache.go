@@ -104,6 +104,7 @@ func (c *Cache) read(path string, entry cacheEntry) (bool, error) {
 	return true, nil
 }
 
+// write writes the given cache entry to the cache file at the given path.
 func (c *Cache) write(path string, entry cacheEntry) error {
 	entry.setWrittenAt(time.Now())
 
