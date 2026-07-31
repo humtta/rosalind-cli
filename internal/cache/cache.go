@@ -20,6 +20,7 @@ const (
 	defaultTTL = 24 * time.Hour
 )
 
+// cacheEntry defines a cache entry with methods to get and set its write time.
 type cacheEntry interface {
 	getWrittenAt() time.Time
 	setWrittenAt(time.Time)
