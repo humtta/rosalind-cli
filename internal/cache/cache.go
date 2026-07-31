@@ -56,6 +56,7 @@ type Cache struct {
 	ttl time.Duration
 }
 
+// NewCache returns a new [Cache] with the default directory and TTL.
 func NewCache() (*Cache, error) {
 	dir, err := os.UserCacheDir()
 	if err != nil {
