@@ -50,6 +50,7 @@ type statementCacheEntry struct {
 	cacheMetadata
 }
 
+// Cache is a local file-based cache for Rosalind data.
 type Cache struct {
 	dir string
 	ttl time.Duration
