@@ -37,6 +37,7 @@ func (c *cacheMetadata) getWrittenAt() time.Time { return c.WrittenAt }
 // setWrittenAt sets the time the cache entry was written.
 func (c *cacheMetadata) setWrittenAt(t time.Time) { c.WrittenAt = t }
 
+// listCacheEntry represents the cache entry for the Rosalind problem list.
 type listCacheEntry struct {
 	Problems []problem.Problem `json:"problems"`
 	cacheMetadata
