@@ -82,6 +82,16 @@ func (c *Cache) GetList() ([]problem.Problem, error) {
 	return entry.Problems, nil
 }
 
+func (c *Cache) SetList(problems []problem.Problem) error {
+	entry := &listCacheEntry{Problems: problems}
+
+	if err := c.write(c.listCachePath(), entry); err != nil {
+		return fmt.Errorf("write problem list: %w", err)
+	}
+
+	return nil
+}
+
 // listCachePath returns the path to the list cache file.
 func (c *Cache) listCachePath() string {
 	return filepath.Join(c.dir, listCacheFile)
