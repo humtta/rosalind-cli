@@ -68,6 +68,20 @@ func NewCache() (*Cache, error) {
 	}, nil
 }
 
+func (c *Cache) GetList() ([]problem.Problem, error) {
+	var entry listCacheEntry
+
+	found, err := c.read(c.listCachePath(), &entry)
+	if err != nil {
+		return nil, fmt.Errorf("read problem list: %w", err)
+	}
+	if !found {
+		return nil, nil
+	}
+
+	return entry.Problems, nil
+}
+
 // listCachePath returns the path to the list cache file.
 func (c *Cache) listCachePath() string {
 	return filepath.Join(c.dir, listCacheFile)
