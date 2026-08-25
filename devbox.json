@@ -7,8 +7,6 @@
   },
 
   "shell": {
-    "init_hook": [
-      "go mod tidy"
-    ]
+    "init_hook": ["go mod tidy"]
   }
 }
