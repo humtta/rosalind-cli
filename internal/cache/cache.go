@@ -99,8 +99,8 @@ func (c *Cache) listCachePath() string {
 
 // statementCachePath returns the path to the statement cache file for the given
 // problem ID.
-func (c *Cache) statementCachePath(id string) (string, error) {
-	return filepath.Join(c.dir, statementCacheDir, id+".json"), nil
+func (c *Cache) statementCachePath(id string) string {
+	return filepath.Join(c.dir, statementCacheDir, id+".json")
 }
 
 // read reads the cache file at the given path into the given cache entry. The
