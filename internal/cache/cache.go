@@ -92,6 +92,20 @@ func (c *Cache) SetList(problems []problem.Problem) error {
 	return nil
 }
 
+func (c *Cache) GetStatement(id string) (*problem.ProblemStatement, error) {
+	var entry statementCacheEntry
+
+	found, err := c.read(c.statementCachePath(id), &entry)
+	if err != nil {
+		return nil, fmt.Errorf("read problem statement: %w", err)
+	}
+	if !found {
+		return nil, nil
+	}
+
+	return &entry.Statement, nil
+}
+
 // listCachePath returns the path to the list cache file.
 func (c *Cache) listCachePath() string {
 	return filepath.Join(c.dir, listCacheFile)
