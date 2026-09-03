@@ -100,9 +100,6 @@ func (c *Cache) listCachePath() string {
 // statementCachePath returns the path to the statement cache file for the given
 // problem ID.
 func (c *Cache) statementCachePath(id string) (string, error) {
-	if err := problem.ValidateID(id); err != nil {
-		return "", fmt.Errorf("invalid id '%s': %w", id, err)
-	}
 	return filepath.Join(c.dir, statementCacheDir, id+".json"), nil
 }
 
