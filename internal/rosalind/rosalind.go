@@ -20,7 +20,6 @@ func NewRosalind() (*Rosalind, error) {
 	if err != nil {
 		return nil, fmt.Errorf("init cache: %w", err)
 	}
-
 	return &Rosalind{
 		client: client.NewClient(),
 		cache:  cache,
