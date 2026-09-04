@@ -94,6 +94,8 @@ func (c *Cache) SetList(problems []problem.Problem) error {
 	return nil
 }
 
+// GetStatement returns the cached statement for the given problem ID, if
+// available and valid.
 func (c *Cache) GetStatement(id string) (*problem.ProblemStatement, error) {
 	var entry statementCacheEntry
 
