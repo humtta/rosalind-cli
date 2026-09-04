@@ -83,6 +83,7 @@ func (c *Cache) GetList() ([]problem.Problem, error) {
 	return entry.Problems, nil
 }
 
+// SetList stores the given Rosalind problem list in the cache.
 func (c *Cache) SetList(problems []problem.Problem) error {
 	entry := &listCacheEntry{Problems: problems}
 
