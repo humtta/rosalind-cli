@@ -60,7 +60,7 @@ type Cache struct {
 func NewCache() (*Cache, error) {
 	dir, err := os.UserCacheDir()
 	if err != nil {
-		return nil, fmt.Errorf("find cache directory: %w", err)
+		return nil, fmt.Errorf("find directory '%s': %w", dir, err)
 	}
 	return &Cache{
 		dir: filepath.Join(dir, cacheDir),
