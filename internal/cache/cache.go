@@ -110,6 +110,7 @@ func (c *Cache) GetStatement(id string) (*problem.ProblemStatement, error) {
 	return &entry.Statement, nil
 }
 
+// SetStatement stores the given statement for the problem ID in the cache.
 func (c *Cache) SetStatement(
 	id string,
 	statement problem.ProblemStatement,
