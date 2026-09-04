@@ -68,6 +68,7 @@ func NewCache() (*Cache, error) {
 	}, nil
 }
 
+// GetList returns the cached Rosalind problem list, if available and valid.
 func (c *Cache) GetList() ([]problem.Problem, error) {
 	var entry listCacheEntry
 
