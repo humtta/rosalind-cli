@@ -14,7 +14,7 @@
       "lint": "go vet ./...",
       "check": "devbox run format && devbox run lint",
 
-      "run": "go run ./cmd/rosalind/",
+      "dev": "go run ./cmd/rosalind/",
       "build": "go build -o ./out/rosalind ./cmd/rosalind/"
     }
   }
