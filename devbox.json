@@ -7,6 +7,15 @@
   },
 
   "shell": {
-    "init_hook": ["go mod tidy"]
+    "init_hook": ["go mod tidy"],
+
+    "scripts": {
+      "format": "go fmt ./...",
+      "lint": "go vet ./...",
+      "check": "devbox run format && devbox run lint",
+
+      "run": "go run ./cmd/rosalind/",
+      "build": "go build -o ./out/rosalind ./cmd/rosalind/"
+    }
   }
 }
