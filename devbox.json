@@ -1,11 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.17.3/.schema/devbox.schema.json",
 
-  "packages": {
-    "go": "1.26.3",
-    "go-task": "3.48.0"
-  },
-
   "shell": {
     "init_hook": ["go mod tidy"],
 
@@ -17,5 +12,10 @@
       "dev": "go run ./cmd/rosalind/",
       "build": "go build -o ./out/rosalind ./cmd/rosalind/"
     }
+  },
+
+  "packages": {
+    "go": "1.26.3",
+    "go-task": "3.48.0"
   }
 }
